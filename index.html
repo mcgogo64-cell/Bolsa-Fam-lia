@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Consulte seu Bolsa Família e descubra se tem direito aos valores atrasados">
+    <title>Guia do Bolsa Família - Consulta e Recuperação</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .screen {
+            display: none;
+            padding: 30px 20px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .header .badge {
+            background: #fbbf24;
+            color: #78350f;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        /* Ad Placeholders */
+        .ad-banner {
+            background: #f3f4f6;
+            border: 2px dashed #d1d5db;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            border-radius: 8px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-size: 0.9em;
+        }
+
+        #ad-top { margin-top: 0; }
+        #ad-middle { min-height: 250px; }
+        #ad-bottom { margin-bottom: 0; }
+
+        h2 {
+            color: #1f2937;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .headline {
+            font-size: 1.3em;
+            color: #dc2626;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .question {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            color: #166534;
+            font-weight: 600;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .option-btn {
+            background: white;
+            border: 2px solid #10b981;
+            color: #059669;
+            padding: 18px;
+            border-radius: 10px;
+            font-size: 1.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .option-btn:hover {
+            background: #10b981;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+        }
+
+        .btn-secondary {
+            background: #fbbf24;
+            color: #78350f;
+            border: none;
+            padding: 18px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #f59e0b;
+            transform: translateY(-2px);
+        }
+
+        .spinner-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #10b981;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .processing-text {
+            font-size: 1.2em;
+            color: #059669;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .result-box {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .result-box h3 {
+            color: #166534;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .result-box p {
+            color: #166534;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .good-news {
+            background: #10b981;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.15em;
+            font-weight: bold;
+            line-height: 1.6;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .alert-box strong {
+            color: #92400e;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .alert-box p {
+            color: #78350f;
+            line-height: 1.5;
+        }
+
+        .document-list {
+            background: white;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .document-list h4 {
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .document-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .document-list li {
+            color: #374151;
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .document-list li:before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .progress-bar {
+            background: #e5e7eb;
+            height: 8px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+            height: 100%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+
+        .step-indicator {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .footer {
+            background: #f9fafb;
+            padding: 15px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85em;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        @media (max-width: 480px) {
+            .headline {
+                font-size: 1.1em;
+            }
+            
+            h2 {
+                font-size: 1.3em;
+            }
+            
+            .header h1 {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🇧🇷 Guia do Bolsa Família</h1>
+            <div class="badge">Consulta e Recuperação</div>
+        </div>
+
+        <!-- Ad Banner Top -->
+        <div id="ad-top" class="ad-banner">
+            [ESPAÇO PARA ANÚNCIO ADSENSE - TOPO]
+        </div>
+
+        <!-- Home Screen -->
+        <div id="screen-home" class="screen active">
+            <div class="headline">
+                ⚠️ Bloqueado no Bolsa Família? Descubra se você tem direito aos valores atrasados (Retroativo)!
+            </div>
+            
+            <div class="result-box">
+                <h3>📋 O que você vai descobrir:</h3>
+                <p>✅ Se você tem direito a receber valores atrasados</p>
+                <p>✅ Como regularizar sua situação</p>
+                <p>✅ Documentos necessários</p>
+                <p>✅ Próximos passos para desbloquear</p>
+            </div>
+
+            <button class="btn-primary" onclick="startQuiz()">
+                🚀 COMEÇAR CONSULTA AGORA
+            </button>
+        </div>
+
+        <!-- Step 1: Quiz Question 1 -->
+        <div id="screen-step1" class="screen">
+            <div class="step-indicator">Passo 1 de 2</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 50%;"></div>
+            </div>
+
+            <div class="question">
+                📱 Qual mensagem aparece no seu aplicativo Caixa Tem?
+            </div>
+
+            <div class="options">
+                <button class="option-btn" onclick="selectOption('unipessoal')">
+                    Averiguação Unipessoal
+                </button>
+                <button class="option-btn" onclick="selectOption('cadastro')">
+                    Cadastro Desatualizado
+                </button>
+                <button class="option-btn" onclick="selectOption('nao-sei')">
+                    Não sei
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 2: Quiz Question 2 -->
+        <div id="screen-step2" class="screen">
+            <div class="step-indicator">Passo 2 de 2</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 100%;"></div>
+            </div>
+
+            <div class="question">
+                🏠 Você mora sozinho?
+            </div>
+
+            <div class="options">
+                <button class="option-btn" onclick="selectLiving('sim')">
+                    Sim, moro sozinho(a)
+                </button>
+                <button class="option-btn" onclick="selectLiving('nao')">
+                    Não, moro com outras pessoas
+                </button>
+            </div>
+        </div>
+
+        <!-- Processing Screen -->
+        <div id="screen-processing" class="screen">
+            <div class="spinner-container">
+                <div class="spinner"></div>
+                <div class="processing-text">
+                    🔍 Analisando seu caso...
+                </div>
+            </div>
+
+            <!-- Ad Banner Middle (Large) -->
+            <div id="ad-middle" class="ad-banner">
+                [ESPAÇO PARA ANÚNCIO ADSENSE - MEIO (GRANDE)]
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="screen-result" class="screen">
+            <h2>📊 Resultado da Análise</h2>
+
+            <div id="result-content">
+                <!-- Content will be inserted here by JavaScript -->
+            </div>
+
+            <!-- Ad Banner Bottom -->
+            <div id="ad-bottom" class="ad-banner">
+                [ESPAÇO PARA ANÚNCIO ADSENSE - RODAPÉ]
+            </div>
+
+            <button class="btn-secondary" onclick="showCalendar()">
+                📅 VER CALENDÁRIO DE PAGAMENTOS
+            </button>
+
+            <button class="btn-primary" onclick="restartQuiz()" style="margin-top: 15px; background: #6b7280;">
+                🔄 FAZER NOVA CONSULTA
+            </button>
+        </div>
+
+        <div class="footer">
+            ℹ️ Este é um guia informativo. Para informações oficiais, acesse gov.br
+        </div>
+    </div>
+
+    <script>
+        let userAnswers = {
+            messageType: '',
+            livingSituation: ''
+        };
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function startQuiz() {
+            showScreen('screen-step1');
+        }
+
+        function selectOption(option) {
+            userAnswers.messageType = option;
+            showScreen('screen-step2');
+        }
+
+        function selectLiving(answer) {
+            userAnswers.livingSituation = answer;
+            showScreen('screen-processing');
+            
+            // Show processing for 3 seconds
+            setTimeout(() => {
+                showResults();
+            }, 3000);
+        }
+
+        function showResults() {
+            const resultContent = document.getElementById('result-content');
+            let content = '';
+
+            if (userAnswers.messageType === 'unipessoal') {
+                content = `
+                    <div class="result-box">
+                        <h3>⚠️ Situação Identificada: Averiguação Unipessoal</h3>
+                        <p><strong>O que está acontecendo:</strong></p>
+                        <p>O governo está bloqueando famílias de uma só pessoa (unipessoais) porque precisa verificar se realmente apenas uma pessoa mora no domicílio. Esta é uma verificação de segurança do programa.</p>
+                    </div>
+
+                    <div class="good-news">
+                        🎉 BOA NOTÍCIA: Após regularizar, você RECEBE os valores atrasados (Retroativo)!
+                    </div>
+
+                    <div class="alert-box">
+                        <strong>📍 O que você deve fazer AGORA:</strong>
+                        <p>1. Procure o CRAS (Centro de Referência de Assistência Social) mais próximo da sua casa</p>
+                        <p>2. Leve os documentos listados abaixo</p>
+                        <p>3. Peça para atualizar seu cadastro no CadÚnico</p>
+                    </div>
+
+                    <div class="document-list">
+                        <h4>📄 Documentos Necessários:</h4>
+                        <ul>
+                            <li>RG e CPF</li>
+                            <li>Comprovante de residência atualizado</li>
+                            <li>Título de eleitor</li>
+                            <li>Carteira de Trabalho (se tiver)</li>
+                            <li>Certidão de Nascimento ou Casamento</li>
+                        </ul>
+                    </div>
+
+                    <div class="result-box">
+                        <h3>💰 Sobre os Valores Atrasados:</h3>
+                        <p>Após a regularização no CRAS, você terá direito a receber todos os valores que foram bloqueados durante o período de averiguação. O pagamento retroativo é garantido por lei!</p>
+                    </div>
+                `;
+            } else if (userAnswers.messageType === 'cadastro') {
+                content = `
+                    <div class="result-box">
+                        <h3>⚠️ Situação Identificada: Cadastro Desatualizado</h3>
+                        <p><strong>O que está acontecendo:</strong></p>
+                        <p>Seu cadastro no CadÚnico está desatualizado. O governo exige atualização regular para garantir que as informações estão corretas.</p>
+                    </div>
+
+                    <div class="good-news">
+                        🎉 BOA NOTÍCIA: Após atualizar o cadastro, você pode receber os valores atrasados!
+                    </div>
+
+                    <div class="alert-box">
+                        <strong>📍 O que você deve fazer AGORA:</strong>
+                        <p>1. Vá ao CRAS mais próximo</p>
+                        <p>2. Leve seus documentos atualizados</p>
+                        <p>3. Atualize todas as informações do CadÚnico</p>
+                    </div>
+
+                    <div class="document-list">
+                        <h4>📄 Documentos Necessários:</h4>
+                        <ul>
+                            <li>Documentos de todos os moradores da casa</li>
+                            <li>Comprovante de residência recente</li>
+                            <li>Comprovante de renda (se houver)</li>
+                            <li>CPF de todos os membros da família</li>
+                        </ul>
+                    </div>
+                `;
+            } else {
+                content = `
+                    <div class="result-box">
+                        <h3>ℹ️ Não sabe qual mensagem aparece?</h3>
+                        <p><strong>O que fazer:</strong></p>
+                        <p>Abra o aplicativo Caixa Tem e verifique se há alguma mensagem sobre bloqueio ou pendência.</p>
+                    </div>
+
+                    <div class="alert-box">
+                        <strong>📍 Passos Recomendados:</strong>
+                        <p>1. Verifique o aplicativo Caixa Tem</p>
+                        <p>2. Procure o CRAS para verificar sua situação</p>
+                        <p>3. Leve seus documentos para regularização</p>
+                    </div>
+
+                    <div class="good-news">
+                        💡 IMPORTANTE: Se houver valores bloqueados, você pode recebê-los após regularizar!
+                    </div>
+                `;
+            }
+
+            resultContent.innerHTML = content;
+            showScreen('screen-result');
+        }
+
+        function showCalendar() {
+            alert('🗓️ Calendário de Pagamentos\n\nApós regularizar seu cadastro, consulte o calendário oficial em:\n\n📱 Aplicativo Caixa Tem\n🌐 Site: bolsafamilia.caixa.gov.br\n\nOs pagamentos seguem o final do NIS (Número de Inscrição Social).');
+        }
+
+        function restartQuiz() {
+            userAnswers = {
+                messageType: '',
+                livingSituation: ''
+            };
+            showScreen('screen-home');
+        }
+    </script>
+</body>
+</html>
