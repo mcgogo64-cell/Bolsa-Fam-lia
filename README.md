@@ -49,6 +49,51 @@ git push -u origin main
 - ✅ Cores Brasil (Verde/Amarelo/Branco)
 - ✅ 100% em Português do Brasil
 
+## 📈 Configurar Google Analytics
+
+O site já está preparado para Google Analytics! Siga estes passos:
+
+### Passo 1: Criar Conta no Google Analytics
+1. Acesse [analytics.google.com](https://analytics.google.com)
+2. Faça login com sua conta Google
+3. Clique em "Começar a medir"
+4. Crie uma conta (nome: ex: "Meus Sites")
+5. Crie uma propriedade (nome: ex: "Bolsa Familia Guia")
+6. Configure informações básicas (moeda, fuso horário)
+7. Aceite os termos
+
+### Passo 2: Obter o ID de Medição
+1. Após criar a propriedade, você verá um **ID de Medição** (formato: `G-XXXXXXXXXX`)
+2. Copie esse ID
+
+### Passo 3: Adicionar o ID no Código
+1. Abra o arquivo `index.html`
+2. Procure por `G-XXXXXXXXXX` (aparece 2 vezes)
+3. Substitua `G-XXXXXXXXXX` pelo seu ID real
+4. Salve o arquivo
+
+**Exemplo:**
+```html
+<!-- Antes -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+gtag('config', 'G-XXXXXXXXXX');
+
+<!-- Depois (com seu ID real) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ABC123XYZ"></script>
+gtag('config', 'G-ABC123XYZ');
+```
+
+### O que será rastreado:
+- ✅ Número de visitantes
+- ✅ Páginas visualizadas
+- ✅ Taxa de conclusão do quiz
+- ✅ Cliques em botões
+- ✅ Tipo de resultado do quiz
+- ✅ Tempo no site
+- ✅ Dispositivos utilizados (mobile/desktop)
+
+Após adicionar o ID, faça commit e push. Os dados começarão a aparecer em 24-48 horas no Google Analytics.
+
 ## 🎯 Configurar AdSense
 
 Após o deploy, substitua os placeholders de anúncios:

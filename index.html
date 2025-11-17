@@ -5,6 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Consulte seu Bolsa Família e descubra se tem direito aos valores atrasados">
     <title>Guia do Bolsa Família - Consulta e Recuperação</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+        
+        // Track quiz completion
+        function trackQuizCompletion(resultType) {
+            gtag('event', 'quiz_completed', {
+                'event_category': 'Quiz',
+                'event_label': resultType
+            });
+        }
+        
+        // Track button clicks
+        function trackButtonClick(buttonName) {
+            gtag('event', 'button_click', {
+                'event_category': 'Interaction',
+                'event_label': buttonName
+            });
+        }
+    </script>
+    
     <style>
         * {
             margin: 0;
@@ -472,16 +498,19 @@
         }
 
         function startQuiz() {
+            trackButtonClick('Começar Consulta');
             showScreen('screen-step1');
         }
 
         function selectOption(option) {
             userAnswers.messageType = option;
+            trackButtonClick('Opção: ' + option);
             showScreen('screen-step2');
         }
 
         function selectLiving(answer) {
             userAnswers.livingSituation = answer;
+            trackButtonClick('Moradia: ' + answer);
             showScreen('screen-processing');
             
             // Show processing for 3 seconds
@@ -581,13 +610,18 @@
 
             resultContent.innerHTML = content;
             showScreen('screen-result');
+            
+            // Track quiz completion
+            trackQuizCompletion(userAnswers.messageType || 'nao-sei');
         }
 
         function showCalendar() {
+            trackButtonClick('Ver Calendário');
             alert('🗓️ Calendário de Pagamentos\n\nApós regularizar seu cadastro, consulte o calendário oficial em:\n\n📱 Aplicativo Caixa Tem\n🌐 Site: bolsafamilia.caixa.gov.br\n\nOs pagamentos seguem o final do NIS (Número de Inscrição Social).');
         }
 
         function restartQuiz() {
+            trackButtonClick('Nova Consulta');
             userAnswers = {
                 messageType: '',
                 livingSituation: ''
