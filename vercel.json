@@ -8,21 +8,6 @@
   ],
   "routes": [
     {
-      "src": "/sitemap.xml",
-      "dest": "/sitemap.xml"
-    },
-    {
-      "src": "/robots.txt",
-      "dest": "/robots.txt"
-    },
-    {
-      "src": "/google[0-9a-f]+\\.html",
-      "dest": "/$1",
-      "headers": {
-        "Content-Type": "text/html"
-      }
-    },
-    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
