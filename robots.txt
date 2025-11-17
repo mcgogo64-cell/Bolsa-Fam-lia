@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bolsa-familia.vercel.app/sitemap.xml
+Sitemap: https://bolsa-familia.vercel.app/patates.xml
 
