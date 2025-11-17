@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>Consulta Bolsa Família 2025 - Veja se foi Bloqueado e Valores</title>
+    <title>Guia do Bolsa Família 2025 - Calculadora Profissional</title>
     <meta name="description" content="Seu Bolsa Família foi bloqueado ou cancelado? Faça a consulta gratuita pelo CPF. Descubra como desbloquear e se você tem direito a valores atrasados (retroativo) agora.">
     <meta name="keywords" content="bolsa família, consulta cpf, bolsa família bloqueado, calendario bolsa familia 2025, valores atrasados, caixa tem, desbloquear benefício">
     <meta name="author" content="Guia do Benefício">
@@ -13,7 +13,7 @@
     
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bolsa-familia.vercel.app/">
-    <meta property="og:title" content="🚨 Atenção: Seu Bolsa Família está bloqueado?">
+    <meta property="og:title" content="Atenção: Seu Bolsa Família está bloqueado?">
     <meta property="og:description" content="Não perca seu dinheiro! Faça o teste rápido e veja como desbloquear e receber os atrasados.">
     <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Flag_of_Brazil.svg/1200px-Flag_of_Brazil.svg.png">
     <meta property="og:locale" content="pt_BR">
@@ -21,20 +21,18 @@
     <link rel="canonical" href="https://bolsa-familia.vercel.app/">
     <meta name="theme-color" content="#008000">
     
-    <!-- Google Fonts - Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NVK467WGKS"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag(){dataLayer.push(arguments);} // eslint-disable-line
         gtag('js', new Date());
         gtag('config', 'G-NVK467WGKS');
         
-        // Track quiz completion
         function trackQuizCompletion(resultType) {
             gtag('event', 'quiz_completed', {
                 'event_category': 'Quiz',
@@ -42,7 +40,6 @@
             });
         }
         
-        // Track button clicks
         function trackButtonClick(buttonName) {
             gtag('event', 'button_click', {
                 'event_category': 'Interaction',
@@ -50,720 +47,511 @@
             });
         }
     </script>
-    
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --blue: #1351B4;
+            --green: #008000;
+            --yellow: #FBC02D;
+            --text: #1F2A44;
+            --muted: #5A6D8C;
+            --border: #E0E6F0;
         }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: white;
-            color: #212121;
+            background: #fff;
+            color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Header - App Bar */
+        a { color: var(--blue); }
+
         .app-header {
-            background: #1351B4;
-            color: white;
+            background: var(--blue);
+            color: #fff;
             padding: 16px 20px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             position: sticky;
             top: 0;
-            z-index: 100;
         }
 
-        .app-header h1 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+        .header-brand { display: flex; align-items: center; gap: 12px; }
+        .flag-dot { width: 16px; height: 16px; background: linear-gradient(135deg, #F7DF1E 50%, #009C3B 50%); border-radius: 50%; box-shadow: 0 0 0 2px rgba(255,255,255,0.18); }
+        .header-brand h1 { font-size: 1.35rem; font-weight: 700; }
+        .eyebrow { text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem; opacity: 0.85; }
+        .header-subtitle { font-size: 0.95rem; opacity: 0.92; }
+
+        main.page { max-width: 1100px; margin: 0 auto; padding: 18px 16px 48px; }
+
+        .hero {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 6px 20px rgba(19,81,180,0.08);
         }
 
-        /* Main Content - Full Width */
-        .main-content {
-            width: 100%;
-            max-width: 100%;
-            background: white;
-        }
+        .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+        .badge { background: #E8F0FE; color: var(--blue); padding: 6px 10px; border-radius: 20px; font-weight: 600; font-size: 0.85rem; }
 
-        .screen {
-            display: none;
-            padding: 20px;
-            animation: fadeIn 0.3s ease-in;
-            min-height: calc(100vh - 60px);
-        }
+        .wizard-card { margin-top: 18px; background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.04); }
 
-        .screen.active {
-            display: block;
-        }
+        .wizard-progress { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; padding: 14px 16px; background: var(--blue); color: #fff; }
+        .progress-step { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+        .progress-step .dot { width: 20px; height: 20px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.6); display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; background: rgba(255,255,255,0.12); }
+        .progress-step.active .dot, .progress-step.completed .dot { background: #fff; color: var(--blue); }
+        .progress-step.completed { opacity: 0.8; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .wizard-body { padding: 16px; }
+        .step { display: none; }
+        .step.active { display: block; }
 
-        /* Warning Box */
-        .warning-box {
-            background: #FFF9C4;
-            border-left: 4px solid #FBC02D;
-            padding: 16px;
-            margin: 20px 0;
-            border-radius: 4px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 12px; }
 
-        .warning-box .icon {
-            font-size: 24px;
-            flex-shrink: 0;
-        }
+        label.field { display: flex; flex-direction: column; gap: 6px; font-weight: 600; color: var(--text); background: #F8FAFD; border: 1px solid var(--border); border-radius: 10px; padding: 10px; }
+        label.field span { font-size: 0.9rem; color: var(--muted); font-weight: 500; }
+        input[type="number"] { padding: 12px; border-radius: 10px; border: 1px solid var(--border); font-size: 1rem; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+        input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(19,81,180,0.16); }
 
-        .warning-box .text {
-            flex: 1;
-            color: #F57F17;
-            font-weight: 500;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
+        .toggle { display: flex; align-items: center; gap: 10px; }
+        .toggle input { width: auto; }
 
-        /* Headline */
-        .headline {
-            font-size: 1.1rem;
-            color: #D32F2F;
-            font-weight: 700;
-            text-align: center;
-            line-height: 1.5;
-            margin: 20px 0;
-        }
+        .nav-row { display: flex; align-items: center; margin-top: 8px; }
+        .btn { border: none; border-radius: 10px; padding: 12px 16px; font-weight: 700; cursor: pointer; min-width: 140px; transition: transform 0.15s ease, box-shadow 0.15s ease; }
+        .btn.primary { background: var(--green); color: #fff; box-shadow: 0 8px 16px rgba(0,128,0,0.2); }
+        .btn.secondary { background: #fff; color: var(--blue); border: 1px solid var(--blue); }
+        .btn.ghost { background: #EEF2FA; color: var(--muted); }
+        .btn:active { transform: translateY(1px); }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
-        /* Progress */
-        .step-indicator {
-            text-align: center;
-            color: #757575;
-            font-size: 0.875rem;
-            margin-bottom: 12px;
-            font-weight: 500;
-        }
+        .ad-inline-slot { border: 1px dashed var(--border); padding: 8px; flex: 1; border-radius: 8px; text-align: center; color: #64748B; background: #fff; font-size: 0.85rem; min-height: 48px; margin: 0 10px; }
+        .ad-slot { border: 2px dashed var(--border); background: #fff; color: #546E7A; text-align: center; padding: 12px; font-size: 0.95rem; border-radius: 8px; margin: 12px 0; }
 
-        .progress-bar {
-            background: #E0E0E0;
-            height: 4px;
-            border-radius: 2px;
-            margin: 16px 0 24px;
-            overflow: hidden;
-        }
+        .banner { background: #FFF7E6; border: 1px solid #FFE6A7; color: #7A4F00; padding: 10px 12px; border-radius: 10px; margin-bottom: 12px; font-size: 0.95rem; display: none; }
 
-        .progress-fill {
-            background: #2E7D32;
-            height: 100%;
-            transition: width 0.5s ease;
-            border-radius: 2px;
-        }
+        .loading-box { display: flex; align-items: center; gap: 12px; background: #F1F5FF; border: 1px solid #DCE6FF; padding: 14px; border-radius: 12px; color: var(--blue); margin-bottom: 10px; }
+        .spinner { width: 28px; height: 28px; border: 3px solid rgba(19,81,180,0.2); border-top-color: var(--blue); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* Question */
-        .question {
-            background: #F5F5F5;
-            border-left: 4px solid #1351B4;
-            padding: 16px;
-            margin: 20px 0;
-            border-radius: 4px;
-            font-size: 1rem;
-            color: #212121;
-            font-weight: 500;
-        }
+        .report { background: #fff; border: 1px solid #D6E2F5; border-radius: 14px; box-shadow: 0 10px 30px rgba(15,62,145,0.12); overflow: hidden; }
+        .report-header { background: linear-gradient(135deg, var(--blue), #0F3E91); color: #fff; padding: 16px; display: flex; justify-content: space-between; align-items: center; }
+        .report-header .title { font-size: 1.1rem; font-weight: 700; }
+        .report-body { padding: 16px; }
+        .status-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; font-weight: 700; }
+        .status-pill.green { background: #E6F4EA; color: #0B5D1E; }
+        .status-pill.red { background: #FBEAEA; color: #B3261E; }
+        .status-pill.yellow { background: #FFF4D5; color: #9E7300; }
 
-        /* Options */
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin: 24px 0;
-        }
+        .summary { display: flex; flex-wrap: wrap; gap: 10px; }
+        .summary-item { flex: 1; min-width: 210px; background: #F8FAFD; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; }
+        .summary-item strong { display: block; font-size: 0.95rem; color: var(--muted); }
+        .summary-item span { font-size: 1.1rem; font-weight: 700; }
 
-        .option-btn {
-            background: white;
-            border: 2px solid #E0E0E0;
-            color: #212121;
-            padding: 16px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-align: left;
-            font-family: 'Roboto', sans-serif;
-        }
+        .card { border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: #F8FAFD; margin-top: 12px; }
+        .card h4 { margin-bottom: 6px; font-size: 1rem; }
+        ul.checklist { list-style: none; padding-left: 0; margin: 6px 0 0 0; }
+        ul.checklist li { display: flex; gap: 8px; padding: 6px 0; }
+        .check-icon { width: 18px; height: 18px; border-radius: 50%; background: #D6F4D0; color: #0F6D2F; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+        .risk-list { color: #B3261E; }
 
-        .option-btn:active {
-            background: #F5F5F5;
-            border-color: #2E7D32;
-        }
-
-        /* Primary Button */
-        .btn-primary {
-            background: #2E7D32;
-            color: white;
-            border: none;
-            padding: 16px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 20px;
-            transition: background 0.2s ease;
-            font-family: 'Roboto', sans-serif;
-            box-shadow: 0 2px 4px rgba(46, 125, 50, 0.3);
-        }
-
-        .btn-primary:active {
-            background: #1B5E20;
-        }
-
-        /* Secondary Button */
-        .btn-secondary {
-            background: #FBC02D;
-            color: #F57F17;
-            border: none;
-            padding: 16px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 12px;
-            transition: background 0.2s ease;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        .btn-secondary:active {
-            background: #F9A825;
-        }
-
-        /* Info Box */
-        .info-box {
-            background: #F5F5F5;
-            border-radius: 4px;
-            padding: 16px;
-            margin: 20px 0;
-        }
-
-        .info-box h3 {
-            color: #212121;
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .info-box p {
-            color: #424242;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 8px;
-        }
-
-        /* Checklist */
-        .checklist {
-            background: white;
-            border: 1px solid #E0E0E0;
-            border-radius: 4px;
-            padding: 16px;
-            margin: 20px 0;
-        }
-
-        .checklist h4 {
-            color: #212121;
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .checklist ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .checklist li {
-            color: #424242;
-            padding: 10px 0;
-            padding-left: 32px;
-            position: relative;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .checklist li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #2E7D32;
-            font-weight: 700;
-            font-size: 1.2rem;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #E8F5E9;
-            border-radius: 50%;
-            font-size: 0.875rem;
-        }
-
-        /* Good News Box */
-        .good-news {
-            background: #2E7D32;
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            text-align: center;
-            font-size: 1rem;
-            font-weight: 700;
-            line-height: 1.6;
-            box-shadow: 0 2px 8px rgba(46, 125, 50, 0.3);
-        }
-
-        /* Alert Box */
-        .alert-box {
-            background: #FFF9C4;
-            border-left: 4px solid #FBC02D;
-            padding: 16px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-
-        .alert-box strong {
-            color: #F57F17;
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 700;
-            font-size: 0.95rem;
-        }
-
-        .alert-box p {
-            color: #F57F17;
-            line-height: 1.6;
-            font-size: 0.95rem;
-            margin-bottom: 6px;
-        }
-
-        /* Result Box */
-        .result-box {
-            background: #E8F5E9;
-            border: 1px solid #2E7D32;
-            border-radius: 4px;
-            padding: 16px;
-            margin: 20px 0;
-        }
-
-        .result-box h3 {
-            color: #1B5E20;
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .result-box p {
-            color: #2E7D32;
-            line-height: 1.6;
-            font-size: 0.95rem;
-            margin-bottom: 10px;
-        }
-
-        .result-box strong {
-            font-weight: 700;
-        }
-
-        /* Spinner */
-        .spinner-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 20px;
-        }
-
-        .spinner {
-            border: 4px solid #E0E0E0;
-            border-top: 4px solid #2E7D32;
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .processing-text {
-            font-size: 1rem;
-            color: #2E7D32;
-            font-weight: 500;
-            text-align: center;
-        }
-
-        /* AdSense Placeholders */
-        .ad-banner {
-            background: #F5F5F5;
-            border: 1px dashed #BDBDBD;
-            padding: 20px;
-            margin: 24px 0;
-            text-align: center;
-            border-radius: 4px;
-            min-height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #9E9E9E;
-            font-size: 0.875rem;
-        }
-
-        #ad-top {
-            margin-top: 0;
-            margin-bottom: 0;
-        }
-
-        #ad-middle {
-            min-height: 250px;
-            margin: 32px 0;
-        }
-
-        #ad-bottom {
-            margin-bottom: 0;
-            margin-top: 24px;
-        }
-
-        /* Section Title */
-        h2 {
-            color: #212121;
-            margin: 24px 0 20px;
-            font-size: 1.25rem;
-            font-weight: 700;
-            text-align: center;
-        }
-
-        /* Footer */
-        .footer {
-            background: #F5F5F5;
-            padding: 16px 20px;
-            text-align: center;
-            color: #757575;
-            font-size: 0.8125rem;
-            border-top: 1px solid #E0E0E0;
-            margin-top: 40px;
-        }
-
-        /* Responsive */
-        @media (min-width: 600px) {
-            .main-content {
-                max-width: 600px;
-                margin: 0 auto;
-            }
-
-            .screen {
-                padding: 24px;
-            }
+        @media (max-width: 720px) {
+            .nav-row { flex-direction: column; gap: 10px; align-items: stretch; }
+            .ad-inline-slot { width: 100%; margin: 0; }
+            .wizard-progress { grid-template-columns: repeat(2, 1fr); }
+            .progress-step { font-size: 0.85rem; }
         }
     </style>
+
+    <!-- Adsterra Popunder -->
+    <script type='text/javascript' src='//pl28076909.effectivegatecpm.com/50/f6/4c/50f64cbd3e1bb9a3e12d048cf747af08.js'></script>
 </head>
 <body>
-    <!-- App Header -->
-    <div class="app-header">
-        <h1>Guia do Benefício</h1>
-    </div>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Ad Banner Top -->
-        <div id="ad-top" class="ad-banner">
-            [ESPAÇO PARA ANÚNCIO ADSENSE - TOPO]
+    <header class="app-header">
+        <div class="header-brand">
+            <div class="flag-dot" aria-hidden="true"></div>
+            <div>
+                <div class="eyebrow">Gov.br · Portaria MDS 2025</div>
+                <h1>Guia do Bolsa Família</h1>
+                <p class="header-subtitle">Calculadora 2025 · Simulador Oficial</p>
+            </div>
         </div>
+    </header>
 
-        <!-- Home Screen -->
-        <div id="screen-home" class="screen active">
-            <div class="warning-box">
-                <span class="icon">⚠️</span>
-                <div class="text">
-                    <strong>Bloqueado no Bolsa Família?</strong> Descubra se você tem direito aos valores atrasados (Retroativo)!
+    <main class="page">
+        <section class="hero">
+            <h2>Calculadora Profissional do Bolsa Família 2025</h2>
+            <p>Calcule a renda per capita, estime o valor do benefício variável (crianças, jovens, gestantes) e gere um relatório detalhado com orientações para o CRAS. Base legal: Portaria MDS 2025.</p>
+            <div class="badges">
+                <span class="badge">Renda per capita ≤ R$ 218</span>
+                <span class="badge green">+ R$ 150 por criança (0-6)</span>
+                <span class="badge yellow">+ bônus gestantes e jovens</span>
+            </div>
+        </section>
+
+        <div class="ad-slot" id="ad-placeholder-top">Espaço reservado para anúncios (topo)</div>
+
+        <div class="wizard-card" aria-live="polite">
+            <div class="wizard-progress">
+                <div class="progress-step active" data-progress="1"><span class="dot">1</span> Família</div>
+                <div class="progress-step" data-progress="2"><span class="dot">2</span> Renda</div>
+                <div class="progress-step" data-progress="3"><span class="dot">3</span> Habitação</div>
+                <div class="progress-step" data-progress="4"><span class="dot">4</span> Análise</div>
+                <div class="progress-step" data-progress="5"><span class="dot">5</span> Resultado</div>
+            </div>
+
+            <div class="wizard-body">
+                <div id="feedback" class="banner"></div>
+
+                <div class="step active" data-step="1">
+                    <h3>Etapa 1 · Composição familiar</h3>
+                    <p class="hint">Informe quem mora no domicílio. Usamos para renda per capita e bônus variáveis.</p>
+                    <div class="form-grid">
+                        <label class="field">Adultos (18+)
+                            <span>Não inclua gestantes aqui</span>
+                            <input type="number" id="field-adults" min="0" value="1">
+                        </label>
+                        <label class="field">Gestantes
+                            <span>Inclua todas as gestantes do domicílio</span>
+                            <input type="number" id="field-pregnant" min="0" value="0">
+                        </label>
+                        <label class="field">Crianças (0 a 6 anos)
+                            <span>Bônus estimado: R$ 150 por criança</span>
+                            <input type="number" id="field-children" min="0" value="0">
+                        </label>
+                        <label class="field">Jovens (7 a 18 anos)
+                            <span>Elegíveis a bônus jovem</span>
+                            <input type="number" id="field-youths" min="0" value="0">
+                        </label>
+                    </div>
+                    <div class="nav-row">
+                        <button class="btn ghost" disabled>Anterior</button>
+                        <div class="ad-inline-slot" id="ad-inline-1">Anúncio</div>
+                        <button class="btn primary" data-next="true">Próximo</button>
+                    </div>
+                </div>
+
+                <div class="step" data-step="2">
+                    <h3>Etapa 2 · Renda da família</h3>
+                    <p class="hint">Some salários, pensões, bicos e rendimentos informais.</p>
+                    <div class="form-grid">
+                        <label class="field">Renda mensal total (R$)
+                            <span>Valor bruto mensal</span>
+                            <input type="number" id="field-income" min="0" step="50" value="1200" placeholder="Ex: 1200">
+                        </label>
+                    </div>
+                    <div class="nav-row">
+                        <button class="btn secondary" data-prev="true">Anterior</button>
+                        <div class="ad-inline-slot" id="ad-inline-2">Anúncio</div>
+                        <button class="btn primary" data-next="true">Próximo</button>
+                    </div>
+                </div>
+
+                <div class="step" data-step="3">
+                    <h3>Etapa 3 · Habitação e cadastro</h3>
+                    <p class="hint">Dados usados para risco de pente-fino e atualização do CadÚnico.</p>
+                    <div class="form-grid">
+                        <label class="field">
+                            <div class="toggle">
+                                <input type="checkbox" id="field-unipersonal">
+                                <div>
+                                    <strong>Vive sozinho (unipessoal)?</strong>
+                                    <span>Domicílios unipessoais são auditados automaticamente.</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="field">
+                            <div class="toggle">
+                                <input type="checkbox" id="field-cad">
+                                <div>
+                                    <strong>CadÚnico atualizado nos últimos 24 meses?</strong>
+                                    <span>Manter atualizado reduz risco de bloqueio.</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="nav-row">
+                        <button class="btn secondary" data-prev="true">Anterior</button>
+                        <div class="ad-inline-slot" id="ad-inline-3">Anúncio</div>
+                        <button class="btn primary" data-next="true">Analisar</button>
+                    </div>
+                </div>
+
+                <div class="step" data-step="4">
+                    <h3>Etapa 4 · Analisando dados...</h3>
+                    <div class="loading-box">
+                        <div class="spinner" aria-hidden="true"></div>
+                        <div>
+                            <strong>Analisando renda e composição familiar</strong>
+                            <p id="analysis-detail">Consultando bases simuladas gov.br.</p>
+                        </div>
+                    </div>
+                    <p class="hint">Aguarde 3 segundos para gerar o relatório (mantém o anúncio visível).</p>
+                    <div class="nav-row">
+                        <button class="btn secondary" data-prev="true">Anterior</button>
+                        <div class="ad-inline-slot" id="ad-inline-4">Anúncio</div>
+                        <button class="btn primary" disabled>Gerando...</button>
+                    </div>
+                </div>
+
+                <div class="step" data-step="5">
+                    <h3>Etapa 5 · Resultado</h3>
+                    <div id="report-container" class="report">
+                        <div class="report-header">
+                            <div>
+                                <div class="title">Relatório · Bolsa Família 2025</div>
+                                <div style="opacity:0.9; font-size:0.95rem;">Base legal: Portaria MDS 2025</div>
+                            </div>
+                            <span class="status-pill green" id="report-status">Status: Aguardando cálculo</span>
+                        </div>
+                        <div class="report-body" id="report-body">
+                            <p>Preencha as etapas para gerar o diagnóstico.</p>
+                        </div>
+                    </div>
+                    <div class="nav-row" style="margin-top:14px;">
+                        <button class="btn secondary" data-prev="true">Refazer</button>
+                        <div class="ad-inline-slot" id="ad-inline-5">Anúncio</div>
+                        <button class="btn primary" data-next="true" id="restart-btn">Novo cálculo</button>
+                    </div>
                 </div>
             </div>
-            
-            <div class="info-box">
-                <h3>O que você vai descobrir:</h3>
-                <p>✓ Se você tem direito a receber valores atrasados</p>
-                <p>✓ Como regularizar sua situação</p>
-                <p>✓ Documentos necessários</p>
-                <p>✓ Próximos passos para desbloquear</p>
-            </div>
-
-            <button class="btn-primary" onclick="startQuiz()">
-                COMEÇAR CONSULTA AGORA
-            </button>
         </div>
 
-        <!-- Step 1: Quiz Question 1 -->
-        <div id="screen-step1" class="screen">
-            <div class="step-indicator">Passo 1 de 2</div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 50%;"></div>
-            </div>
+        <div class="ad-slot" id="ad-placeholder-below">Espaço reservado para anúncios (abaixo do wizard)</div>
+    </main>
 
-            <div class="question">
-                Qual mensagem aparece no seu aplicativo Caixa Tem?
-            </div>
+    <div class="ad-slot" id="ad-placeholder-bottom">Espaço reservado para anúncios (rodapé)</div>
 
-            <div class="options">
-                <button class="option-btn" onclick="selectOption('unipessoal')">
-                    Averiguação Unipessoal
-                </button>
-                <button class="option-btn" onclick="selectOption('cadastro')">
-                    Cadastro Desatualizado
-                </button>
-                <button class="option-btn" onclick="selectOption('nao-sei')">
-                    Não sei
-                </button>
-            </div>
-        </div>
-
-        <!-- Step 2: Quiz Question 2 -->
-        <div id="screen-step2" class="screen">
-            <div class="step-indicator">Passo 2 de 2</div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 100%;"></div>
-            </div>
-
-            <div class="question">
-                Você mora sozinho?
-            </div>
-
-            <div class="options">
-                <button class="option-btn" onclick="selectLiving('sim')">
-                    Sim, moro sozinho(a)
-                </button>
-                <button class="option-btn" onclick="selectLiving('nao')">
-                    Não, moro com outras pessoas
-                </button>
-            </div>
-        </div>
-
-        <!-- Processing Screen -->
-        <div id="screen-processing" class="screen">
-            <div class="spinner-container">
-                <div class="spinner"></div>
-                <div class="processing-text">
-                    Analisando seu caso...
-                </div>
-            </div>
-
-            <!-- Ad Banner Middle (Large) -->
-            <div id="ad-middle" class="ad-banner">
-                [ESPAÇO PARA ANÚNCIO ADSENSE - MEIO (GRANDE)]
-            </div>
-        </div>
-
-        <!-- Result Screen -->
-        <div id="screen-result" class="screen">
-            <h2>Resultado da Análise</h2>
-
-            <div id="result-content">
-                <!-- Content will be inserted here by JavaScript -->
-            </div>
-
-            <!-- Ad Banner Bottom -->
-            <div id="ad-bottom" class="ad-banner">
-                [ESPAÇO PARA ANÚNCIO ADSENSE - RODAPÉ]
-            </div>
-
-            <button class="btn-secondary" onclick="showCalendar()">
-                VER CALENDÁRIO DE PAGAMENTOS
-            </button>
-
-            <button class="btn-primary" onclick="restartQuiz()" style="margin-top: 12px; background: #757575;">
-                FAZER NOVA CONSULTA
-            </button>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            Este é um guia informativo. Para informações oficiais, acesse gov.br
-        </div>
-    </div>
-
-    <!-- FAQ Section for SEO -->
-    <section style="padding: 20px; background-color: #f5f5f5; margin-top: 30px;">
-        <h3 style="color: #333; font-family: 'Roboto', sans-serif;">Dúvidas Frequentes sobre o Bolsa Família 2025</h3>
-        
-        <article style="margin-bottom: 15px;">
-            <h4 style="color: #008000; font-weight: bold;">Por que meu Bolsa Família foi bloqueado?</h4>
-            <p style="color: #555; font-size: 14px;">O governo está realizando um pente-fino em 2025, focando principalmente em cadastros unipessoais e dados desatualizados no CadÚnico. Se seus dados estiverem inconsistentes, o benefício é bloqueado preventivamente.</p>
-        </article>
-        <article style="margin-bottom: 15px;">
-            <h4 style="color: #008000; font-weight: bold;">Tenho direito a valores atrasados (Retroativo)?</h4>
-            <p style="color: #555; font-size: 14px;">Sim! Caso você regularize sua situação no CRAS e comprove que atende aos requisitos, o governo libera as parcelas que ficaram retidas durante o bloqueio.</p>
-        </article>
-        <article>
-            <h4 style="color: #008000; font-weight: bold;">Como consultar pelo CPF?</h4>
-            <p style="color: #555; font-size: 14px;">Você pode usar nosso guia simplificado acima ou acessar o aplicativo oficial Caixa Tem. Mantenha sempre seu CPF regular na Receita Federal.</p>
-        </article>
-    </section>
+    <footer style="text-align:center; color: var(--muted); font-size:0.9rem; padding: 12px 0;">
+        © 2025 Guia do Bolsa Família · Simulador de orientação. Não é sistema oficial do governo.
+    </footer>
 
     <script>
-        let userAnswers = {
-            messageType: '',
-            livingSituation: ''
+        const steps = Array.from(document.querySelectorAll('.step'));
+        const progressSteps = Array.from(document.querySelectorAll('.progress-step'));
+        const feedback = document.getElementById('feedback');
+        let currentStep = 0;
+        let analysisTimeout = null;
+
+        const formState = {
+            adults: 1,
+            pregnant: 0,
+            children: 0,
+            youths: 0,
+            income: 1200,
+            unipersonal: false,
+            cadUpdated: false,
         };
 
-        function showScreen(screenId) {
-            document.querySelectorAll('.screen').forEach(screen => {
-                screen.classList.remove('active');
+        const currencyFormatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+
+        function formatCurrency(value) {
+            return currencyFormatter.format(value);
+        }
+
+        function showFeedback(message) {
+            if (!message) {
+                feedback.style.display = 'none';
+                feedback.textContent = '';
+                return;
+            }
+            feedback.textContent = message;
+            feedback.style.display = 'block';
+        }
+
+        function updateProgress() {
+            progressSteps.forEach((step, index) => {
+                step.classList.toggle('active', index === currentStep);
+                step.classList.toggle('completed', index < currentStep);
             });
-            document.getElementById(screenId).classList.add('active');
-            window.scrollTo(0, 0);
         }
 
-        function startQuiz() {
-            trackButtonClick('Começar Consulta');
-            showScreen('screen-step1');
+        function showStep(index) {
+            steps.forEach((step, idx) => {
+                step.classList.toggle('active', idx === index);
+            });
+            currentStep = index;
+            updateProgress();
         }
 
-        function selectOption(option) {
-            userAnswers.messageType = option;
-            trackButtonClick('Opção: ' + option);
-            showScreen('screen-step2');
+        function parseNumber(value) {
+            const num = parseInt(value, 10);
+            return Number.isNaN(num) ? 0 : Math.max(0, num);
         }
 
-        function selectLiving(answer) {
-            userAnswers.livingSituation = answer;
-            trackButtonClick('Moradia: ' + answer);
-            showScreen('screen-processing');
-            
-            // Show processing for 3 seconds
-            setTimeout(() => {
-                showResults();
+        function captureStepData() {
+            switch (currentStep) {
+                case 0: {
+                    formState.adults = parseNumber(document.getElementById('field-adults').value);
+                    formState.pregnant = parseNumber(document.getElementById('field-pregnant').value);
+                    formState.children = parseNumber(document.getElementById('field-children').value);
+                    formState.youths = parseNumber(document.getElementById('field-youths').value);
+                    const members = formState.adults + formState.pregnant + formState.children + formState.youths;
+                    if (members < 1) {
+                        showFeedback('Inclua pelo menos 1 pessoa para calcular a renda per capita.');
+                        return false;
+                    }
+                    break;
+                }
+                case 1: {
+                    const incomeRaw = Number(document.getElementById('field-income').value);
+                    formState.income = Number.isNaN(incomeRaw) ? 0 : Math.max(0, incomeRaw);
+                    break;
+                }
+                case 2: {
+                    formState.unipersonal = document.getElementById('field-unipersonal').checked;
+                    formState.cadUpdated = document.getElementById('field-cad').checked;
+                    break;
+                }
+                default:
+                    break;
+            }
+            showFeedback('');
+            return true;
+        }
+
+        function buildReport() {
+            const members = Math.max(1, formState.adults + formState.pregnant + formState.children + formState.youths);
+            const perCapita = formState.income / members;
+            const eligible = perCapita <= 218;
+
+            const baseAmount = eligible ? 600 : 0;
+            const childBonus = eligible ? formState.children * 150 : 0;
+            const youthBonus = eligible ? formState.youths * 50 : 0;
+            const pregnantBonus = eligible ? formState.pregnant * 50 : 0;
+            const estimated = baseAmount + childBonus + youthBonus + pregnantBonus;
+
+            const highProbability = eligible && formState.cadUpdated;
+            const statusText = highProbability ? 'Alta probabilidade de aprovação' : 'Risco de bloqueio ou pente-fino';
+            const statusClass = highProbability ? 'green' : 'red';
+            const warning = formState.unipersonal ? 'Atenção: domicílio unipessoal — risco de pente-fino. Leve comprovante de endereço e declaração de composição familiar.' : 'Sem indicador de unipessoalidade.';
+
+            const riskNotes = [];
+            if (!eligible) riskNotes.push('Renda per capita acima de R$ 218,00 (critério de elegibilidade).');
+            if (!formState.cadUpdated) riskNotes.push('CadÚnico desatualizado há mais de 24 meses: atualize antes do pagamento.');
+            if (formState.unipersonal) riskNotes.push('Domicílio unipessoal auditado automaticamente: leve comprovante de residência em seu nome.');
+
+            const documents = [
+                'RG e CPF de todos os membros.',
+                'Comprovante de residência recente (até 90 dias).',
+                'Comprovante de renda formal (contracheque) ou declaração simples para renda informal.',
+            ];
+            if (formState.children > 0) documents.push('Certidão de nascimento das crianças e carteira de vacinação atualizada.');
+            if (formState.youths > 0) documents.push('Declaração escolar/frequência para jovens de 7 a 18 anos.');
+            if (formState.pregnant > 0) documents.push('Cartão de pré-natal assinado pela unidade de saúde.');
+            if (formState.unipersonal) documents.push('Declaração de unipessoalidade assinada no CRAS.');
+
+            const recommendations = [
+                'Agende ou compareça ao CRAS com todos os documentos originais.',
+                'Confirme telefone e endereço no CadÚnico para contato do MDS.',
+                'Regularize CPF de todos para evitar bloqueio na folha.',
+            ];
+
+            const reportBody = document.getElementById('report-body');
+            const reportStatus = document.getElementById('report-status');
+            reportStatus.textContent = `Status: ${statusText}`;
+            reportStatus.className = `status-pill ${statusClass}`;
+
+            const actionList = documents.map(item => `<li><span class=\"check-icon\">✓</span><span>${item}</span></li>`).join('');
+            const riskList = riskNotes.length ? riskNotes.map(item => `<li>• ${item}</li>`).join('') : '<li>• Sem apontamentos críticos.</li>';
+            const planList = recommendations.map(item => `<li>• ${item}</li>`).join('');
+
+            reportBody.innerHTML = `
+                <div class=\"summary\">
+                    <div class=\"summary-item\"><strong>Renda per capita</strong><span>${formatCurrency(perCapita)}</span></div>
+                    <div class=\"summary-item\"><strong>Estimativa mensal</strong><span>${formatCurrency(estimated)} (estimada)</span></div>
+                    <div class=\"summary-item\"><strong>Composição</strong><span>${members} pessoa(s)</span></div>
+                    <div class=\"summary-item\"><strong>Auditoria</strong><span>${warning}</span></div>
+                </div>
+
+                <div class=\"card\">
+                    <h4>Componentes do benefício</h4>
+                    <p>
+                        Base: ${formatCurrency(baseAmount)}<br>
+                        Crianças (0-6): ${formatCurrency(childBonus)}<br>
+                        Jovens (7-18): ${formatCurrency(youthBonus)}<br>
+                        Gestantes: ${formatCurrency(pregnantBonus)}
+                    </p>
+                </div>
+
+                <div class=\"card\">
+                    <h4>Referência legal</h4>
+                    <p>Portaria MDS 2025 · Critério de renda per capita (≤ R$ 218) e benefícios variáveis para crianças, jovens e gestantes.</p>
+                </div>
+
+                <div class=\"card\">
+                    <h4>Checklist de documentos (CRAS)</h4>
+                    <ul class=\"checklist\">${actionList}</ul>
+                </div>
+
+                <div class=\"card ${riskNotes.length ? 'risk-list' : ''}\">
+                    <h4>Alertas de bloqueio e pente-fino</h4>
+                    <ul>${riskList}</ul>
+                </div>
+
+                <div class=\"card\">
+                    <h4>Plano de ação imediato</h4>
+                    <ul>${planList}</ul>
+                </div>
+            `;
+
+            trackQuizCompletion(statusText);
+        }
+
+        function startAnalysis() {
+            showStep(3);
+            if (analysisTimeout) clearTimeout(analysisTimeout);
+            document.getElementById('analysis-detail').textContent = 'Validando renda per capita...';
+            analysisTimeout = setTimeout(() => {
+                buildReport();
+                showStep(4);
             }, 3000);
         }
 
-        function showResults() {
-            const resultContent = document.getElementById('result-content');
-            let content = '';
-
-            if (userAnswers.messageType === 'unipessoal') {
-                content = `
-                    <div class="result-box">
-                        <h3>Situação Identificada: Averiguação Unipessoal</h3>
-                        <p><strong>O que está acontecendo:</strong></p>
-                        <p>O governo está bloqueando famílias de uma só pessoa (unipessoais) porque precisa verificar se realmente apenas uma pessoa mora no domicílio. Esta é uma verificação de segurança do programa.</p>
-                    </div>
-
-                    <div class="good-news">
-                        BOA NOTÍCIA: Após regularizar, você RECEBE os valores atrasados (Retroativo)!
-                    </div>
-
-                    <div class="alert-box">
-                        <strong>O que você deve fazer AGORA:</strong>
-                        <p>1. Procure o CRAS (Centro de Referência de Assistência Social) mais próximo da sua casa</p>
-                        <p>2. Leve os documentos listados abaixo</p>
-                        <p>3. Peça para atualizar seu cadastro no CadÚnico</p>
-                    </div>
-
-                    <div class="checklist">
-                        <h4>📄 Documentos Necessários:</h4>
-                        <ul>
-                            <li>RG e CPF</li>
-                            <li>Comprovante de residência atualizado</li>
-                            <li>Título de eleitor</li>
-                            <li>Carteira de Trabalho (se tiver)</li>
-                            <li>Certidão de Nascimento ou Casamento</li>
-                        </ul>
-                    </div>
-
-                    <div class="result-box">
-                        <h3>Sobre os Valores Atrasados:</h3>
-                        <p>Após a regularização no CRAS, você terá direito a receber todos os valores que foram bloqueados durante o período de averiguação. O pagamento retroativo é garantido por lei!</p>
-                    </div>
-                `;
-            } else if (userAnswers.messageType === 'cadastro') {
-                content = `
-                    <div class="result-box">
-                        <h3>Situação Identificada: Cadastro Desatualizado</h3>
-                        <p><strong>O que está acontecendo:</strong></p>
-                        <p>Seu cadastro no CadÚnico está desatualizado. O governo exige atualização regular para garantir que as informações estão corretas.</p>
-                    </div>
-
-                    <div class="good-news">
-                        BOA NOTÍCIA: Após atualizar o cadastro, você pode receber os valores atrasados!
-                    </div>
-
-                    <div class="alert-box">
-                        <strong>O que você deve fazer AGORA:</strong>
-                        <p>1. Vá ao CRAS mais próximo</p>
-                        <p>2. Leve seus documentos atualizados</p>
-                        <p>3. Atualize todas as informações do CadÚnico</p>
-                    </div>
-
-                    <div class="checklist">
-                        <h4>📄 Documentos Necessários:</h4>
-                        <ul>
-                            <li>Documentos de todos os moradores da casa</li>
-                            <li>Comprovante de residência recente</li>
-                            <li>Comprovante de renda (se houver)</li>
-                            <li>CPF de todos os membros da família</li>
-                        </ul>
-                    </div>
-                `;
-            } else {
-                content = `
-                    <div class="result-box">
-                        <h3>Não sabe qual mensagem aparece?</h3>
-                        <p><strong>O que fazer:</strong></p>
-                        <p>Abra o aplicativo Caixa Tem e verifique se há alguma mensagem sobre bloqueio ou pendência.</p>
-                    </div>
-
-                    <div class="alert-box">
-                        <strong>Passos Recomendados:</strong>
-                        <p>1. Verifique o aplicativo Caixa Tem</p>
-                        <p>2. Procure o CRAS para verificar sua situação</p>
-                        <p>3. Leve seus documentos para regularização</p>
-                    </div>
-
-                    <div class="good-news">
-                        IMPORTANTE: Se houver valores bloqueados, você pode recebê-los após regularizar!
-                    </div>
-                `;
+        function handleNext() {
+            if (!captureStepData()) return;
+            if (currentStep === 2) {
+                trackButtonClick('Analisar');
+                startAnalysis();
+                return;
             }
-
-            resultContent.innerHTML = content;
-            showScreen('screen-result');
-            
-            // Track quiz completion
-            trackQuizCompletion(userAnswers.messageType || 'nao-sei');
+            if (currentStep === 4) return;
+            trackButtonClick('Próximo');
+            showStep(Math.min(currentStep + 1, steps.length - 1));
         }
 
-        function showCalendar() {
-            trackButtonClick('Ver Calendário');
-            alert('Calendário de Pagamentos\n\nApós regularizar seu cadastro, consulte o calendário oficial em:\n\n📱 Aplicativo Caixa Tem\n🌐 Site: bolsafamilia.caixa.gov.br\n\nOs pagamentos seguem o final do NIS (Número de Inscrição Social).');
+        function handlePrev() {
+            if (analysisTimeout) {
+                clearTimeout(analysisTimeout);
+                analysisTimeout = null;
+            }
+            trackButtonClick('Anterior');
+            showStep(Math.max(currentStep - 1, 0));
         }
 
-        function restartQuiz() {
-            trackButtonClick('Nova Consulta');
-            userAnswers = {
-                messageType: '',
-                livingSituation: ''
-            };
-            showScreen('screen-home');
-        }
+        document.querySelectorAll('[data-next]').forEach(btn => {
+            btn.addEventListener('click', event => {
+                event.preventDefault();
+                if (event.target.id === 'restart-btn') {
+                    showStep(0);
+                    return;
+                }
+                handleNext();
+            });
+        });
+
+        document.querySelectorAll('[data-prev]').forEach(btn => {
+            btn.addEventListener('click', event => {
+                event.preventDefault();
+                handlePrev();
+            });
+        });
+
+        updateProgress();
     </script>
 </body>
 </html>
